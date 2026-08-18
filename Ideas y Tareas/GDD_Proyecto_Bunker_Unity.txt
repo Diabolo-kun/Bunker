@@ -1,0 +1,238 @@
+================================================================================
+           DOCUMENTO DE DISEÑO DE JUEGO (GDD) - PROYECTO BÚNKER / GEO-STRATEGY
+================================================================================
+
+1. INFORMACIÓN GENERAL DEL PROYECTO
+--------------------------------------------------------------------------------
+* Título provisional: Project Supervisor / Rebuild Earth
+* Género: Estrategia, Gestión y Supervivencia Postapocalíptica
+* Motor de desarrollo: Unity (C#)
+* Perspectiva principal: Oficina del Supervisor (Interfaz de mando cenital / Mapa táctico)
+* Plataforma objetivo: PC (Steam / Standalone)
+
+Visión General:
+El jugador asume el rol del Supervisor de un búnker tras un 
+evento cataclísmico global. Mediante un mapa satelital interactivo basado en 
+datos geográficos del mundo real, el jugador debe gestionar recursos, purificar 
+suministros contaminados, desplegar personal en expediciones, asegurar el territorio 
+con puestos de control y construir una economía sostenible a largo plazo, interactuando 
+con otros búnkeres rivales mediante diplomacia o fuerza para liderar la reconstrucción 
+del nuevo mundo.
+
+
+2. PILARES FUNDAMENTALES DE DISEÑO
+--------------------------------------------------------------------------------
+1. Entorno Real como Tablero de Juego:
+   El jugador elige cualquier ubicación geográfica real. La topografía, cuerpos 
+   de agua, masas forestales y centros urbanos determinan la disponibilidad inicial 
+   de recursos.
+
+2. Transición Económica (De la Rapiña a la Sostenibilidad):
+   El bucle inicial de saqueo de recursos naturales finitos e inmediatos evoluciona 
+   hacia la construcción de infraestructura productiva y sostenible a largo plazo 
+   (granjas, plantaciones forestales, minería profunda).
+
+3. Logística Territorial y Puestos de Control:
+   El alcance del búnker está limitado por la distancia. Construir puestos de 
+   control en nodos clave amplía el radio de acción, permite acoger a supervivientes 
+   de la superficie y estabiliza las rutas de suministro.
+
+4. Procesamiento y Cuellos de Botella Internos:
+   El mundo exterior está contaminado. La recolección solo es la mitad del trabajo; 
+   el búnker debe asignar personal y energía a la purificación de agua y alimentos 
+   antes de su consumo.
+
+5. Coexistencia y Hegemonía Tensa:
+   Otros búnkeres operan en el mapa. La extracción en nodos comunes puede compartirse 
+   (reduciendo el rendimiento pero evitando el conflicto) o disputarse. La victoria 
+   se alcanza extendiendo la zona de influencia para liderar la reconstrucción.
+
+
+3. SISTEMA DE MAPA GEOESPACIAL Y GENERACIÓN DE NODOS
+--------------------------------------------------------------------------------
+A. Integración Geográfica:
+   - Utilización de SDKs de datos geoespaciales (ej. Mapbox / OpenStreetMap).
+   - El jugador selecciona coordenadas reales de inicio.
+   - El sistema analiza las capas vectoriales y ráster del terreno en un radio 
+     determinado.
+
+B. Clasificación Procedural de Terrenos:
+   - Zonas Urbanas / Edificaciones (landuse=residential/commercial/industrial):
+     Generan nodos de Chatarra, Componentes Electrónicos y Medicina.
+   - Masas Forestales (landuse=forest / natural=wood):
+     Generan nodos de Madera, Biomasa y Comida contaminada (caza/recolección).
+   - Cuerpos de Agua (natural=water / waterway=river):
+     Generan nodos de Agua contaminada y potencial hidroeléctrico.
+   - Terrenos Agrícolas / Praderas (landuse=farmland / meadow):
+     Zonas óptimas con bonificación para la instalación de Granjas.
+
+
+4. TIPOLOGÍA Y CICLO DE VIDA DE LOS NODOS
+--------------------------------------------------------------------------------
+El mapa maneja un ciclo dinámico de cuatro estados/tipos de nodos:
+
+1. Nodos Naturales (Generación Procedural):
+   - Aparecen automáticamente al escanear el terreno real.
+   - Recursos inmediatos y abundantes, pero estrictamente finitos.
+   - Pueden ser HÍBRIDOS si se ubican en la intersección de varias capas 
+     geográficas (ej. un río junto a un bosque provee Agua, Comida y Madera).
+
+2. Nodos Reutilizados (Puestos de Control / Checkpoints):
+   - El jugador construye un puesto de control fortificado sobre la ubicación 
+     de un nodo natural existente.
+   - Función clave: Aunque los recursos naturales del nodo se agoten al 100%, 
+     el puesto de control sigue OPERATIVO.
+   - Funciones del puesto: Extiende el radio logístico, protege las rutas, 
+     recoge y filtra supervivientes de la superficie y permite el reclutamiento.
+
+3. Nodos Creados por el Jugador (Infraestructura Artificial):
+   - Estructuras erigidas directamente por el jugador en cualquier punto válido 
+     dentro de su radio de influencia.
+   - Características: Tasa de extracción/generación más lenta que la de un nodo 
+     natural, pero constante, renovable e indefinida en el tiempo.
+   - Requieren fase de maduración/desarrollo:
+     * Planteles Forestales: Requieren tiempo de crecimiento antes de producir madera.
+     * Granjas Hidropónicas / Cultivos: Generan flujo continuo de comida.
+     * Minas Profundas: Extraen minerales de forma lenta pero inagotable.
+
+4. Nodos Agotados (Reconversión de Terreno):
+   - Nodos naturales cuya reserva extractiva ha llegado a cero.
+   - Pueden ser demolidos, reacondicionados o reutilizados como solares para 
+     nuevas instalaciones del jugador (como plantas de reciclaje de suelo o 
+     puestos militares).
+
+
+5. MATRIZ DE RECURSOS DEL JUEGO
+--------------------------------------------------------------------------------
+Categoría       | Recurso                   | Origen Principal        | Uso / Propósito
+----------------+---------------------------+-------------------------+-----------------------------------------
+BÁSICOS         | Madera                    | Bosques / Planteles     | Construcción y combustible básico
+                | Chatarra                  | Ruinas urbanas          | Mantenimiento de infraestructuras
+                | Minerales                 | Minas / Canteras        | Construcción avanzada y blindaje
+                | Combustible               | Refinerías / Depósitos  | Generadores, vehículos y expediciones
+----------------+---------------------------+-------------------------+-----------------------------------------
+VITALES         | Agua Contaminada          | Ríos, lagos y pozos     | Materia prima para purificación
+(Consumibles)   | Agua Purificada           | Planta de purificación  | Consumo de población y cultivos
+                | Comida Contaminada        | Caza, recolección       | Materia prima para descontaminación
+                | Comida Limpia             | Cocina / Granja limpia  | Mantiene con vida a la población
+----------------+---------------------------+-------------------------+-----------------------------------------
+HUMANOS Y       | Mano de Obra (Workforce)  | Refugiados / Población  | Asignación a puestos, salas y cuadrillas
+SOCIALES        | Moral / Estabilidad       | Comodidades y seguridad | Evita rebeliones, sabotajes y huelgas
+                | Influencia / Autoridad    | Prestigio y defensas    | Peso diplomático, tratados y anexiones
+----------------+---------------------------+-------------------------+-----------------------------------------
+TECNOLÓGICOS Y  | Componentes Electrónicos  | Zonas industriales/Lab  | Mejoras de nivel y puestos avanzados
+AVANZADOS       | Energía Eléctrica         | Generadores / Turbinas  | Sostiene el búnker y las comunicaciones
+                | Medicinas / Químicos      | Hospitales / Lab        | Cura infecciones, heridas y purifica
+
+
+6. GESTIÓN INTERNA DEL BÚNKER (OFICINA DEL SUPERVISOR)
+--------------------------------------------------------------------------------
+- Cuello de Botella de Purificación:
+  Todo lo extraído de la superficie contiene radiación o toxicidad. El búnker 
+  debe dedicar reactores, filtros y personal a convertir el Agua/Comida Contaminada 
+  en suministros aptos. Consumir productos contaminados genera bajas médicas y 
+  hunde la Moral.
+
+- Asignación de Roles:
+  La población total se divide en:
+  * Trabajadores Internos: Purificación, cocina, mantenimiento de energía y laboratorio.
+  * Cuadrillas de Superficie: Exploradores, recolectores y constructores.
+  * Guarnición: Seguridad interna y dotación de puestos de control.
+
+- La Oficina Central:
+  Pantalla de mando donde se configuran los radares de exploración, se firman 
+  tratados, se atiende a eventos aleatorios (tormentas tóxicas, refugiados) y se 
+  supervisa el flujo de recursos en tiempo real.
+
+
+7. LOGÍSTICA, EXPEDICIONES Y PUESTOS DE CONTROL
+--------------------------------------------------------------------------------
+- Radio Operativo:
+  El búnker tiene un radio de alcance inicial limitado. Las cuadrillas no pueden 
+  viajar más allá sin arriesgarse a perderse o morir.
+
+- Red de Puestos de Control (Checkpoints):
+  * Al construir un puesto en un nodo (natural o reutilizado), se crea un 
+    nuevo círculo de alcance logístico interconectado.
+  * Los puestos consumen energía y requieren una dotación mínima de guardias.
+  * Sirven como puntos de acogida: la población de la superficie acude primero 
+    a estos puestos, donde el jugador puede seleccionarlos antes de trasladarlos 
+    al búnker principal.
+
+
+8. DIPLOMACIA Y BÚNKERES RIVALES
+--------------------------------------------------------------------------------
+- Presencia de Facciones:
+  En el mapa satelital existen otros búnkeres independientes que buscan sus 
+  propios recursos para sobrevivir.
+
+- Explotación de Nodos Compartidos:
+  * Si dos búnkeres envían cuadrillas al mismo nodo de recursos, se activa el 
+    protocolo de Coexistencia Pacífica: el rendimiento del nodo se divide entre 
+    ambos búnkeres.
+  * Ventaja: Evita el combate y el desgaste militar temprano.
+  * Desventaja: Menor velocidad de recolección de recursos.
+
+- Conflicto y Dominación:
+  * El jugador puede romper tratados y atacar las cuadrillas o puestos de control 
+    rivales para quedarse con el 100% de los nodos.
+  * Implica gasto de munición, desgaste de personal y riesgo de represalias.
+
+- Condiciones de Victoria:
+  * Victoria Diplomática / Reconstructora: Crear una federación de búnkeres mediante 
+    tratados de influencia, cubriendo todo el territorio con una red comercial unida.
+  * Victoria Hegemónica: Conquistar, absorber o asediar los búnkeres rivales hasta 
+    que tu búnker sea la única autoridad indiscutible del mapa.
+
+
+9. ARQUITECTURA TÉCNICA SUGERIDA EN UNITY (C#)
+--------------------------------------------------------------------------------
+A. ScriptableObjects:
+   - ResourceDataSO (ID, Nombre, EsContaminado, RatioConversión, Icono).
+   - NodeDataSO (TipoNodo, RecursosBase, TasaProducción, CosteConstrucción).
+   - FactionProfileSO (Personalidad IA rival, NivelAgresividad, RecursosIniciales).
+
+B. Jerarquía de Nodos (POO):
+   - MapNode (Clase Base): Posición geográfica, collider interactivo, radio.
+   - NaturalNode : MapNode (Gestión de recursos finitos e hibridación).
+   - CheckpointNode : NaturalNode (Persistencia tras agotamiento, enlace de red).
+   - PlayerConstructedNode : MapNode (Cálculo de crecimiento, producción periódica).
+
+C. Gestores Centrales (Singletons / Services):
+   - GeoMapManager: Carga de datos geoespaciales y conversión a espacio de Unity.
+   - ResourceManager: Control de inventario general del búnker y almacenes.
+   - LogisticsGraphManager: Grafo que calcula qué nodos están conectados al búnker.
+   - SimulationClock: Tick temporal para consumos de comida/agua, crecimiento y viajes.
+   - DiplomacyManager: Relaciones, pactos y balance de poder con otros búnkeres.
+
+
+10. ROADMAP DE DESARROLLO (FASES RECOMENDADAS)
+--------------------------------------------------------------------------------
+Fase 1: Prototipo Bucle Básico (Greybox)
+- Creación de interfaz 2D/3D sencilla con mapa plano.
+- Sistema de inventario básico (Madera, Chatarra, Agua/Comida Contaminada vs Limpia).
+- Tick de consumo de población y proceso de purificación interno.
+
+Fase 2: Sistema de Mapa y Nodos
+- Integración de API/SDK de mapas (Mapbox / OSM) con selección de coordenadas.
+- Algoritmo de detección de etiquetas para generación de nodos naturales e híbridos.
+- Sistema de cuadrillas de exploración con tiempos de ida, recolección y vuelta.
+
+Fase 3: Expansión Territorial e Infraestructura
+- Mecánica de construcción de puestos de control (reutilización de nodos agotados).
+- Construcción libre de nodos artificiales (granjas, minas, planteles de árboles).
+- Sistema de red logística y radio de influencia.
+
+Fase 4: IA de Búnkeres Rivales y Diplomacia
+- Spawneo de búnkeres competidores en el mapa.
+- Algoritmo de decisión para nodos compartidos vs declaración de hostilidades.
+- Sistema de puntuación de Influencia y condiciones de fin de partida.
+
+Fase 5: Arte, UI Estilizada y Pulido de Balanceo
+- Estilización de la Oficina del Supervisor con estética diegética/táctica.
+- Balance de curvas de consumo y tiempos de crecimiento.
+- Efectos de sonido, ambientación de radiofrecuencia y feedback visual.
+
+================================================================================
+FIN DEL DOCUMENTO DE DISEÑO DE JUEGO
+================================================================================
