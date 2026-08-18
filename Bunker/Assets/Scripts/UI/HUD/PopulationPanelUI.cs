@@ -4,6 +4,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Bunker.Bunker.Population;
 
 namespace Bunker.UI.HUD
 {
@@ -39,7 +40,7 @@ namespace Bunker.UI.HUD
 
         private void SuscribirEventos()
         {
-            var pop = Population.PopulationManager.Instance;
+            var pop = PopulationManager.Instance;
             if (pop != null)
             {
                 pop.OnPopulationChanged += OnPoblacionChanged;
@@ -50,7 +51,7 @@ namespace Bunker.UI.HUD
 
         private void DesuscribirEventos()
         {
-            var pop = Population.PopulationManager.Instance;
+            var pop = PopulationManager.Instance;
             if (pop != null)
             {
                 pop.OnPopulationChanged -= OnPoblacionChanged;
@@ -90,7 +91,7 @@ namespace Bunker.UI.HUD
         private void Update()
         {
             // Actualizar alertas de carencias en tiempo real
-            var pop = Population.PopulationManager.Instance;
+            var pop = PopulationManager.Instance;
             if (pop == null) return;
 
             if (alertaSinAgua != null)
@@ -108,7 +109,7 @@ namespace Bunker.UI.HUD
 
         private void ActualizarPoblacion()
         {
-            var pop = Population.PopulationManager.Instance;
+            var pop = PopulationManager.Instance;
             if (pop == null) return;
 
             if (poblacionTexto != null)
@@ -120,7 +121,7 @@ namespace Bunker.UI.HUD
 
         private void ActualizarMoral()
         {
-            var pop = Population.PopulationManager.Instance;
+            var pop = PopulationManager.Instance;
             if (pop == null) return;
 
             float ratio = pop.MoralActual / pop.MoralMaxima;

@@ -24,44 +24,44 @@
 ## FASE 1 — Prototipo del Bucle Básico (Greybox)
 
 ### 1.1 ScriptableObjects de Recursos
-- [ ] Crear `ResourceDataSO` (ID, Nombre, EsContaminado, RatioConversión, Icono)
-- [ ] Definir todos los recursos básicos: Madera, Chatarra, Minerales, Combustible
-- [ ] Definir recursos vitales: Agua Contaminada, Agua Purificada, Comida Contaminada, Comida Limpia
-- [ ] Definir recursos tecnológicos: Componentes Electrónicos, Energía Eléctrica, Medicinas/Químicos
-- [ ] Definir recursos humanos/sociales: Mano de Obra, Moral/Estabilidad, Influencia/Autoridad
+- [x] Crear `ResourceDataSO` (ID, Nombre, EsContaminado, RatioConversión, Icono) ✅
+- [x] Definir todos los recursos básicos: Madera, Chatarra, Minerales, Combustible ✅ (enum ResourceType)
+- [x] Definir recursos vitales: Agua Contaminada, Agua Purificada, Comida Contaminada, Comida Limpia ✅
+- [x] Definir recursos tecnológicos: Componentes Electrónicos, Energía Eléctrica, Medicinas/Químicos ✅
+- [x] Definir recursos humanos/sociales: Mano de Obra, Moral/Estabilidad, Influencia/Autoridad ✅
 
 ### 1.2 Sistema de Inventario del Búnker
-- [ ] Crear clase `ResourceManager` (singleton/servicio) para almacenar cantidades de cada recurso
-- [ ] Implementar métodos `AddResource()`, `RemoveResource()`, `HasEnough()`, `GetAmount()`
-- [ ] Crear sistema de notificación/eventos cuando un recurso cambia (Observer pattern)
-- [ ] Implementar límites de almacenamiento por recurso (capacidad máxima)
+- [x] Crear clase `ResourceManager` (singleton/servicio) para almacenar cantidades de cada recurso ✅
+- [x] Implementar métodos `AddResource()`, `RemoveResource()`, `HasEnough()`, `GetAmount()` ✅
+- [x] Crear sistema de notificación/eventos cuando un recurso cambia (Observer pattern) ✅
+- [x] Implementar límites de almacenamiento por recurso (capacidad máxima) ✅
 
 ### 1.3 Reloj de Simulación (SimulationClock)
-- [ ] Crear `SimulationClock` con tick configurable (ej. cada X segundos = 1 hora de juego)
-- [ ] Implementar controles de velocidad: pausa, x1, x2, x4
-- [ ] Crear sistema de eventos por tick (`OnTickElapsed`) para que otros sistemas suscriban
-- [ ] Implementar contador de día/hora visible en UI
+- [x] Crear `SimulationClock` con tick configurable (ej. cada X segundos = 1 hora de juego) ✅
+- [x] Implementar controles de velocidad: pausa, x1, x2, x4 ✅
+- [x] Crear sistema de eventos por tick (`OnTick`, `OnHourPassed`, `OnDayPassed`) ✅
+- [x] Implementar contador de día/hora visible en UI ✅
 
 ### 1.4 Consumo de Población
-- [ ] Crear clase `PopulationManager` para gestionar la población total del búnker
-- [ ] Implementar consumo automático de Agua Purificada y Comida Limpia por tick
-- [ ] Calcular ratio de consumo según tamaño de población
-- [ ] Implementar consecuencias por falta de recursos (bajas médicas, reducción de moral)
-- [ ] Crear evento de muerte/baja por inanición o deshidratación
+- [x] Crear clase `PopulationManager` para gestionar la población total del búnker ✅
+- [x] Implementar consumo automático de Agua Purificada y Comida Limpia por hora ✅
+- [x] Calcular ratio de consumo según tamaño de población ✅
+- [x] Implementar consecuencias por falta de recursos (bajas médicas, reducción de moral) ✅
+- [x] Crear evento de muerte/baja por inanición o deshidratación ✅
 
 ### 1.5 Sistema de Purificación Interno
-- [ ] Crear clase `PurificationSystem` para convertir recursos contaminados en limpios
-- [ ] Implementar cola de purificación (Agua Contaminada → Agua Purificada)
-- [ ] Implementar cola de descontaminación (Comida Contaminada → Comida Limpia)
-- [ ] Añadir requisitos de personal asignado y energía para que funcione
-- [ ] Implementar tiempos de conversión configurables por recurso
+- [x] Crear clase `PurificationSystem` para convertir recursos contaminados en limpios ✅
+- [x] Implementar cola de purificación (Agua Contaminada → Agua Purificada) ✅
+- [x] Implementar cola de descontaminación (Comida Contaminada → Comida Limpia) ✅
+- [x] Añadir requisitos de personal asignado y energía para que funcione ✅
+- [x] Implementar tiempos de conversión configurables por recurso ✅
 - [ ] Penalizar el consumo directo de recursos contaminados (moral baja, enfermedades)
 
 ### 1.6 UI Básica del Búnker (Greybox)
-- [ ] Crear panel de recursos visible en pantalla (barras o contadores numéricos)
-- [ ] Crear panel de población (total, estado de salud, moral)
-- [ ] Crear botones de control de velocidad del reloj
-- [ ] Crear panel de purificación (colas activas, progreso, personal asignado)
+- [x] Crear panel de recursos visible en pantalla (barras o contadores numéricos) ✅
+- [x] Crear panel de población (total, estado de salud, moral) ✅
+- [x] Crear botones de control de velocidad del reloj ✅
+- [x] Crear panel de purificación (colas activas, progreso, personal asignado) ✅
 - [ ] Implementar tooltips básicos al pasar el ratón por los recursos
 
 ---

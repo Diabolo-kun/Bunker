@@ -4,6 +4,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Bunker.Bunker.Systems;
 
 namespace Bunker.UI.Panels
 {
@@ -41,7 +42,7 @@ namespace Bunker.UI.Panels
             if (comidaMenosPersonal != null) comidaMenosPersonal.onClick.AddListener(() => CambiarPersonal(1, -1));
 
             // Suscribir eventos
-            var ps = Systems.PurificationSystem.Instance;
+            var ps = PurificationSystem.Instance;
             if (ps != null)
             {
                 ps.OnPurificationCompleted += OnPurificacionCompletada;
@@ -51,7 +52,7 @@ namespace Bunker.UI.Panels
 
         private void OnDestroy()
         {
-            var ps = Systems.PurificationSystem.Instance;
+            var ps = PurificationSystem.Instance;
             if (ps != null)
             {
                 ps.OnPurificationCompleted -= OnPurificacionCompletada;
@@ -68,7 +69,7 @@ namespace Bunker.UI.Panels
         private void ActualizarLinea(int indice, Image barra, TextMeshProUGUI personalTxt,
                                       TextMeshProUGUI estadoTxt, TextMeshProUGUI nombreTxt)
         {
-            var ps = Systems.PurificationSystem.Instance;
+            var ps = PurificationSystem.Instance;
             if (ps == null) return;
 
             var linea = ps.GetLinea(indice);
@@ -96,7 +97,7 @@ namespace Bunker.UI.Panels
 
         private void CambiarPersonal(int indiceLinea, int cambio)
         {
-            var ps = Systems.PurificationSystem.Instance;
+            var ps = PurificationSystem.Instance;
             if (ps == null) return;
 
             var linea = ps.GetLinea(indiceLinea);
