@@ -1,0 +1,24 @@
+﻿%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb55942356b076d45b7509a843d1ed7f, type: 3}
+  m_Name: Chatarra
+  tipo: 1
+  nombreMostrado: Chatarra
+  descripcion: "Restos de metal y materiales de la antigua civilizacion."
+  categoria: 0
+  esContaminado: 0
+  recursoLimpioResultante: 1
+  ratioConversion: 1
+  capacidadMaximaPorDefecto: 500
+  esAlmacenable: 1
+  icono: {fileID: 0}
+  colorUI: {r: 0.5, g: 0.5, b: 0.5, a: 1}

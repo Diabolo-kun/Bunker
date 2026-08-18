@@ -1,0 +1,24 @@
+﻿%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb55942356b076d45b7509a843d1ed7f, type: 3}
+  m_Name: ComidaContaminada
+  tipo: 6
+  nombreMostrado: ComidaContaminada
+  descripcion: "Alimentos recolectados o cazados expuestos a la radiacion."
+  categoria: 1
+  esContaminado: 1
+  recursoLimpioResultante: 7
+  ratioConversion: 2
+  capacidadMaximaPorDefecto: 400
+  esAlmacenable: 1
+  icono: {fileID: 0}
+  colorUI: {r: 0.5, g: 0.6, b: 0.2, a: 1}
