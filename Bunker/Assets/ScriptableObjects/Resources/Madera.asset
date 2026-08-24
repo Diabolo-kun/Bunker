@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
@@ -11,14 +11,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb55942356b076d45b7509a843d1ed7f, type: 3}
   m_Name: Madera
+  m_EditorClassIdentifier: 
   tipo: 0
   nombreMostrado: Madera
-  descripcion: "Madera recolectada de bosques o ruinas. Util para construccion."
+  descripcion: Madera recolectada de bosques o ruinas. Util para construccion.
   categoria: 0
   esContaminado: 0
   recursoLimpioResultante: 0
   ratioConversion: 1
   capacidadMaximaPorDefecto: 500
   esAlmacenable: 1
-  icono: {fileID: 0}
+  icono: {fileID: 21300000, guid: 70000000000000000000000000000005, type: 3}
   colorUI: {r: 0.6, g: 0.4, b: 0.2, a: 1}

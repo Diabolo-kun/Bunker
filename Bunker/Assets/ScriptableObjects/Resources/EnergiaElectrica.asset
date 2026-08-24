@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
@@ -11,9 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb55942356b076d45b7509a843d1ed7f, type: 3}
   m_Name: EnergiaElectrica
+  m_EditorClassIdentifier: 
   tipo: 12
   nombreMostrado: EnergiaElectrica
-  descripcion: "Energia generada para mantener los sistemas del bunker."
+  descripcion: Energia generada para mantener los sistemas del bunker.
   categoria: 3
   esContaminado: 0
   recursoLimpioResultante: 12

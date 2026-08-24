@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
@@ -11,14 +11,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb55942356b076d45b7509a843d1ed7f, type: 3}
   m_Name: ComidaLimpia
+  m_EditorClassIdentifier: 
   tipo: 7
   nombreMostrado: ComidaLimpia
-  descripcion: "Raciones de comida descontaminada y segura."
+  descripcion: Raciones de comida descontaminada y segura.
   categoria: 1
   esContaminado: 0
   recursoLimpioResultante: 7
   ratioConversion: 1
   capacidadMaximaPorDefecto: 400
   esAlmacenable: 1
-  icono: {fileID: 0}
+  icono: {fileID: 21300000, guid: 70000000000000000000000000000012, type: 3}
   colorUI: {r: 0.9, g: 0.7, b: 0.2, a: 1}
