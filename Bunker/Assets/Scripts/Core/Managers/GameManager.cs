@@ -48,8 +48,23 @@ namespace Bunker.Core.Managers
         private void Start()
         {
             InicializarRecursosIniciales();
+            InicializarMapa();
             Estado = EstadoJuego.Jugando;
             Debug.Log("[GameManager] Juego inicializado correctamente.");
+        }
+
+        private void InicializarMapa()
+        {
+            var mapManager = Map.MapManager.Instance;
+            if (mapManager != null)
+            {
+                mapManager.GenerarMapa();
+                Debug.Log("[GameManager] Mapa generado.");
+            }
+            else
+            {
+                Debug.LogWarning("[GameManager] MapManager no encontrado. El mapa no se generará.");
+            }
         }
 
         private void InicializarRecursosIniciales()

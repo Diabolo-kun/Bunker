@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5887a4ce6eebf3346adbb27d2f2e91f3, type: 3}
+  m_Name: NodoAgricola
+  m_EditorClassIdentifier: 
+  nombreMostrado: Terreno Agricola
+  tipoTerreno: 3
+  descripcion: Antiguas tierras de cultivo. Comida contaminada, pero potencial para granjas futuras.
+  recursosDisponibles: 
+  - 6
+  cantidadBase: 
+  - 400
+  tasaRecoleccionPorTick: 2.0
+  iconoNodo: {fileID: 0}
+  colorMapa: {r: 0.7, g: 0.6, b: 0.3, a: 1}
+  multiplicadorMin: 0.7
+  multiplicadorMax: 1.3
