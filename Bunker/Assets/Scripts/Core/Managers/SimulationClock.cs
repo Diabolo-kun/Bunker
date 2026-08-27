@@ -169,7 +169,7 @@ namespace Bunker.Core.Managers
         /// <summary>Devuelve una cadena formateada con el día y hora actuales.</summary>
         public string GetTiempoFormateado()
         {
-            return $"Día {DiaActual} — {horasEnDiaActual:D2}:00";
+            return $"Dia {DiaActual} - {horasEnDiaActual:D2}:00";
         }
     }
 }

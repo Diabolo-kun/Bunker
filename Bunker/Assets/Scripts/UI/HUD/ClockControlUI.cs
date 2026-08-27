@@ -101,9 +101,9 @@ namespace Bunker.UI.HUD
             if (velocidadTexto != null)
             {
                 if (pausado)
-                    velocidadTexto.text = "⏸ PAUSADO";
+                    velocidadTexto.text = "PAUSADO";
                 else
-                    velocidadTexto.text = $"▶ x{velocidad:F0}";
+                    velocidadTexto.text = $"> x{velocidad:F0}";
             }
 
             // Resaltar botón activo
